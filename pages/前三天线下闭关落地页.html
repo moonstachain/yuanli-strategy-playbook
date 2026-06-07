@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>原力战略 · 三天线下闭关 — 找到你的天才区，把"做自己"变成一门好生意</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15110d;          /* 墨黑 */
+    --ink-soft:#2a241d;
+    --paper:#f4ede0;        /* 宣纸米 */
+    --paper-deep:#e9dec9;
+    --jade:#3f6b5c;         /* 玉色 */
+    --jade-light:#6f9a89;
+    --gold:#b48a3f;         /* 描金 */
+    --gold-light:#d4ad6a;
+    --vermilion:#9e3b2e;    /* 朱砂 */
+    --line:rgba(21,17,13,.14);
+    --serif:"Noto Serif SC",serif;
+    --sans:"Noto Sans SC",sans-serif;
+    --display:"Cormorant Garamond",serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* 纸张噪点纹理 */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  .wrap{position:relative;z-index:2}
+  section{padding:clamp(70px,9vw,140px) clamp(22px,6vw,80px)}
+  .inner{max-width:1080px;margin:0 auto}
+  .label{
+    font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:18px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .label::before{content:"";width:30px;height:1px;background:var(--gold)}
+  h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.28;letter-spacing:.01em}
+
+  /* ===== 顶栏 ===== */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px clamp(22px,6vw,80px);
+    background:rgba(244,237,224,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-family:var(--serif);font-weight:900;font-size:19px;letter-spacing:.18em}
+  .brand span{color:var(--jade)}
+  .topbar .cta{
+    font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.1em;
+    padding:9px 20px;border:1px solid var(--ink);border-radius:2px;
+    color:var(--ink);text-decoration:none;transition:.3s;
+  }
+  .topbar .cta:hover{background:var(--ink);color:var(--paper)}
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    position:relative;padding-top:120px;
+    background:
+      radial-gradient(ellipse 90% 60% at 80% 10%,rgba(63,107,92,.10),transparent 60%),
+      radial-gradient(ellipse 70% 50% at 10% 90%,rgba(180,138,63,.10),transparent 60%);
+  }
+  /* 印章 */
+  .seal{
+    position:absolute;top:50%;right:clamp(20px,6vw,90px);transform:translateY(-50%) rotate(-4deg);
+    width:clamp(90px,12vw,150px);height:clamp(90px,12vw,150px);
+    border:3px solid var(--vermilion);border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--vermilion);font-family:var(--serif);font-weight:900;
+    font-size:clamp(22px,3vw,38px);line-height:1.05;text-align:center;
+    opacity:.88;letter-spacing:.05em;
+    box-shadow:inset 0 0 0 2px rgba(158,59,46,.25);
+  }
+  .hero .eyebrow{
+    font-family:var(--sans);font-weight:500;letter-spacing:.4em;font-size:13px;
+    color:var(--jade);margin-bottom:30px;
+  }
+  .hero h1{
+    font-size:clamp(40px,7.5vw,92px);line-height:1.12;letter-spacing:.02em;
+    max-width:15ch;margin-bottom:14px;
+  }
+  .hero h1 .accent{color:var(--vermilion)}
+  .hero h1 .stroke{
+    color:transparent;-webkit-text-stroke:1.4px var(--ink);
+  }
+  .hero .sub{
+    font-family:var(--display);font-style:italic;font-size:clamp(20px,2.6vw,30px);
+    color:var(--ink-soft);margin:26px 0 40px;font-weight:500;
+  }
+  .hero .deck{
+    font-size:clamp(15px,1.8vw,19px);max-width:48ch;color:var(--ink-soft);
+    font-weight:300;line-height:2;
+  }
+  .hero .meta{
+    display:flex;flex-wrap:wrap;gap:30px;margin-top:50px;
+    padding-top:30px;border-top:1px solid var(--line);max-width:640px;
+  }
+  .hero .meta div{font-size:14px}
+  .hero .meta strong{
+    display:block;font-family:var(--serif);font-weight:700;font-size:20px;
+    color:var(--jade);margin-bottom:2px;
+  }
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:12px;margin-top:44px;
+    background:var(--ink);color:var(--paper);text-decoration:none;
+    font-family:var(--sans);font-weight:500;letter-spacing:.08em;font-size:15px;
+    padding:17px 38px;border-radius:2px;transition:.35s;position:relative;overflow:hidden;
+  }
+  .btn-primary::after{content:"→";transition:.35s}
+  .btn-primary:hover{background:var(--jade)}
+  .btn-primary:hover::after{transform:translateX(6px)}
+
+  .scroll-hint{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+    font-family:var(--sans);font-size:11px;letter-spacing:.3em;color:var(--ink-soft);
+    writing-mode:vertical-rl;opacity:.6;animation:bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+  /* ===== 痛点 / 反常识 ===== */
+  .pain{background:var(--ink);color:var(--paper)}
+  .pain::before{}
+  .pain .label{color:var(--gold-light)}
+  .pain .label::before{background:var(--gold-light)}
+  .pain h2{
+    color:var(--paper);font-size:clamp(28px,4.4vw,52px);line-height:1.32;
+    max-width:20ch;margin-bottom:50px;
+  }
+  .pain h2 em{font-style:normal;color:var(--gold-light)}
+  .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:rgba(244,237,224,.12)}
+  .pain-grid .cell{background:var(--ink);padding:34px 30px}
+  .pain-grid .q{font-family:var(--serif);font-weight:500;font-size:19px;color:var(--paper);margin-bottom:14px;line-height:1.5}
+  .pain-grid .a{font-size:14.5px;color:rgba(244,237,224,.62);line-height:1.85}
+  .pain .turn{
+    margin-top:56px;padding:38px 40px;border-left:3px solid var(--vermilion);
+    background:rgba(158,59,46,.10);
+  }
+  .pain .turn p{font-family:var(--serif);font-size:clamp(19px,2.6vw,28px);color:var(--paper);line-height:1.55;font-weight:500}
+  .pain .turn .small{font-family:var(--sans);font-size:14px;color:var(--gold-light);margin-top:14px;font-weight:300;letter-spacing:.05em}
+
+  /* ===== 三大爆点 ===== */
+  .gates .head{max-width:46ch;margin-bottom:64px}
+  .gates h2{font-size:clamp(30px,4.6vw,56px);line-height:1.25;margin-bottom:20px}
+  .gates h2 .hl{color:var(--jade);border-bottom:3px solid var(--gold);padding-bottom:2px}
+  .gates .intro{font-size:16px;color:var(--ink-soft);max-width:42ch}
+
+  .gate{
+    display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,68px);
+    padding:clamp(40px,6vw,68px) 0;border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .gate:last-of-type{border-bottom:1px solid var(--line)}
+  .gate .num{
+    font-family:var(--display);font-weight:600;font-size:clamp(64px,10vw,128px);
+    line-height:.8;color:transparent;-webkit-text-stroke:1.5px var(--jade);
+    position:relative;
+  }
+  .gate .num .cn{
+    display:block;font-family:var(--serif);font-size:14px;font-weight:700;
+    letter-spacing:.3em;color:var(--gold);-webkit-text-stroke:0;margin-top:18px;
+    writing-mode:vertical-rl;height:auto;
+  }
+  .gate .body h3{font-size:clamp(24px,3.4vw,38px);margin-bottom:10px}
+  .gate .body .tag{
+    font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.2em;
+    color:var(--vermilion);text-transform:uppercase;margin-bottom:18px;display:block;
+  }
+  .gate .body .desc{font-size:16px;color:var(--ink-soft);line-height:2;max-width:50ch;margin-bottom:24px}
+  .gate .take{
+    display:inline-flex;flex-wrap:wrap;gap:10px;
+  }
+  .gate .take span{
+    font-size:13px;font-weight:400;padding:7px 16px;
+    background:var(--paper-deep);border:1px solid var(--line);border-radius:30px;
+    color:var(--ink-soft);
+  }
+  .gate .take span::before{content:"带走 · ";color:var(--jade);font-weight:500}
+
+  /* ===== 方法论 / 反常识金句条 ===== */
+  .creed{
+    background:var(--jade);color:var(--paper);text-align:center;
+    background-image:radial-gradient(circle at 50% 0%,rgba(244,237,224,.10),transparent 55%);
+  }
+  .creed .formula{
+    font-family:var(--display);font-size:clamp(28px,5vw,60px);font-weight:500;
+    letter-spacing:.04em;margin-bottom:24px;
+  }
+  .creed .formula b{color:var(--gold-light);font-weight:600}
+  .creed .formula .x{opacity:.5;font-style:italic;padding:0 .25em}
+  .creed p{font-size:clamp(15px,2vw,18px);max-width:40ch;margin:0 auto;color:rgba(244,237,224,.82);line-height:2}
+  .creed .quote{
+    margin-top:48px;font-family:var(--serif);font-weight:500;font-size:clamp(17px,2.4vw,24px);
+    color:var(--paper);max-width:30ch;margin-left:auto;margin-right:auto;line-height:1.7;
+  }
+  .creed .quote::before,.creed .quote::after{content:"「";color:var(--gold-light);font-size:1.2em}
+  .creed .quote::after{content:"」"}
+
+  /* ===== 谁适合 ===== */
+  .who .label{color:var(--vermilion)}
+  .who .label::before{background:var(--vermilion)}
+  .who h2{font-size:clamp(28px,4.4vw,50px);margin-bottom:48px;max-width:18ch}
+  .who-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px)}
+  .who-card{padding:36px 34px;border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.35)}
+  .who-card.yes{border-top:4px solid var(--jade)}
+  .who-card.no{border-top:4px solid var(--ink-soft);opacity:.86}
+  .who-card .ttl{font-family:var(--serif);font-weight:700;font-size:21px;margin-bottom:22px;display:flex;align-items:center;gap:10px}
+  .who-card.yes .ttl{color:var(--jade)}
+  .who-card.no .ttl{color:var(--ink-soft)}
+  .who-card ul{list-style:none}
+  .who-card li{font-size:15px;color:var(--ink-soft);padding:11px 0 11px 28px;position:relative;border-bottom:1px dashed var(--line)}
+  .who-card li:last-child{border-bottom:none}
+  .who-card.yes li::before{content:"✓";position:absolute;left:0;color:var(--jade);font-weight:700}
+  .who-card.no li::before{content:"—";position:absolute;left:0;color:var(--ink-soft)}
+
+  /* ===== 场域 闹中取静 ===== */
+  .venue{background:var(--ink-soft);color:var(--paper);position:relative;overflow:hidden}
+  .venue .inner{position:relative;z-index:2}
+  .venue .label{color:var(--gold-light)}
+  .venue .label::before{background:var(--gold-light)}
+  .venue h2{color:var(--paper);font-size:clamp(28px,4.4vw,50px);max-width:18ch;margin-bottom:24px;line-height:1.3}
+  .venue h2 em{font-style:normal;color:var(--gold-light)}
+  .venue p{font-size:16px;color:rgba(244,237,224,.74);max-width:50ch;line-height:2;margin-bottom:18px}
+  .venue .feats{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .venue .feats span{font-size:13px;padding:9px 18px;border:1px solid rgba(244,237,224,.28);border-radius:30px;color:rgba(244,237,224,.9)}
+  .lotus{
+    position:absolute;right:-80px;bottom:-80px;width:420px;height:420px;opacity:.10;z-index:1;
+    color:var(--gold-light);
+  }
+
+  /* ===== 报名 CTA ===== */
+  .enroll{text-align:center;background:
+      radial-gradient(ellipse 80% 60% at 50% 0%,rgba(63,107,92,.12),transparent 60%);}
+  .enroll .label{justify-content:center}
+  .enroll .label::before{display:none}
+  .enroll h2{font-size:clamp(32px,5.2vw,64px);line-height:1.2;margin-bottom:20px;max-width:18ch;margin-left:auto;margin-right:auto}
+  .enroll h2 .accent{color:var(--vermilion)}
+  .enroll .price-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:14px;margin:30px 0 8px}
+  .enroll .price{font-family:var(--serif);font-weight:900;font-size:clamp(40px,8vw,76px);color:var(--ink)}
+  .enroll .price .yuan{font-size:.4em;font-weight:500;vertical-align:super;margin-right:4px}
+  .enroll .price-note{font-size:14px;color:var(--ink-soft);max-width:30ch;margin:0 auto 8px}
+  .enroll .next{font-size:13px;color:var(--gold);letter-spacing:.1em;margin-bottom:40px}
+  .enroll .micro{font-size:12.5px;color:var(--ink-soft);margin-top:26px;letter-spacing:.05em}
+  .enroll .micro b{color:var(--vermilion);font-weight:500}
+
+  /* ===== 页脚 ===== */
+  footer{background:var(--ink);color:rgba(244,237,224,.55);padding:46px clamp(22px,6vw,80px);font-size:13px}
+  footer .inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;align-items:center}
+  footer .brand{color:var(--paper)}
+  footer .brand span{color:var(--jade-light)}
+
+  /* ===== 动效 ===== */
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:760px){
+    .seal{position:static;transform:rotate(-3deg);margin-bottom:28px}
+    .gate{grid-template-columns:1fr}
+    .gate .num .cn{writing-mode:horizontal-tb;margin-top:8px}
+    .who-cols{grid-template-columns:1fr}
+    .hero{padding-top:140px;min-height:auto;padding-bottom:80px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 顶栏 -->
+  <div class="topbar">
+    <div class="brand">原力<span>战略</span></div>
+    <a href="#enroll" class="cta">立即占位</a>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="inner">
+      <div class="seal">原力<br>战略</div>
+      <div class="eyebrow reveal">AI 原生 · 三天线下沉浸闭关</div>
+      <h1 class="reveal">
+        在 AI 时代<br>
+        不要做<span class="stroke">最好的</span><br>
+        要做<span class="accent">唯一的</span>
+      </h1>
+      <p class="sub reveal">Make being yourself a good business.</p>
+      <p class="deck reveal">
+        三天，你不是来听一门商科课。<br>
+        你是来找到那条贯穿一生的非对称优势——
+        把它独创成一个属于你的品类，
+        并锁定离场即可执行的那一步关键动作。
+      </p>
+
+      <div class="meta reveal">
+        <div><strong>3 天</strong>线下沉浸闭关</div>
+        <div><strong>沉静场域</strong>闹中取静闭关</div>
+        <div><strong>3 关</strong>觉醒 · 独创 · 决断</div>
+        <div><strong>高敏专家型</strong>有基本盘创始人</div>
+      </div>
+
+      <a href="#enroll" class="btn-primary reveal">查看课程与占位</a>
+    </div>
+    <div class="scroll-hint">SCROLL</div>
+  </header>
+
+  <!-- 痛点 / 反常识 -->
+  <section class="pain">
+    <div class="inner">
+      <div class="label reveal">为什么你越努力，越像空气</div>
+      <h2 class="reveal">在 AI 时代，<em>没有独特性</em>，<br>就等于同质化。</h2>
+
+      <div class="pain-grid reveal">
+        <div class="cell">
+          <div class="q">你拼命证明"我比别人更好"</div>
+          <div class="a">第二名要超过第一名得投 4 倍资源，第四名得投 8 倍——而你证明的过程，还在免费给第一名做宣传。</div>
+        </div>
+        <div class="cell">
+          <div class="q">你被一堆事压着，却不知道先打哪一仗</div>
+          <div class="a">不是没有能力执行，是从来没人帮你想清楚那个真正的核心问题。这正是 AI 时代最大的认知不对称。</div>
+        </div>
+        <div class="cell">
+          <div class="q">你的"高品质"，正在被悄悄削平</div>
+          <div class="a">只要不是你的独特性，AI 就比全人类做得更好。你会被蒸馏，甚至——大概率不配被蒸馏。</div>
+        </div>
+      </div>
+
+      <div class="turn reveal">
+        <p>但同一个时代，倒过来对你极度友好——<br>你只要足够独特，所有大厂都在替你放大你的非对称优势。</p>
+        <div class="small">所有借不到势的事，你再用力都没用。借势 × 合力，才是核心能力。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三大爆点 -->
+  <section class="gates">
+    <div class="inner">
+      <div class="head reveal">
+        <h2>三天，三关，<br>三个让你<span class="hl">笃定清晰</span>的结果</h2>
+        <p class="intro">不是"目标在人之上、人要工具化"的旧商科。原力反过来——目标在人之下。先找到你的底层源代码，再让最高效的工具为你所用。</p>
+      </div>
+
+      <!-- 关一 -->
+      <div class="gate reveal">
+        <div class="num">01<span class="cn">原力觉醒</span></div>
+        <div class="body">
+          <span class="tag">Day 1 · 找到你的天才区</span>
+          <h3>认识你自己，整合你的阴影</h3>
+          <p class="desc">剥离具体事务，找到那条三十年不变的能力原点——你区别于同质化竞争的非对称优势。直面你曾经抗拒的黑暗力量，找到它的金色意义，完成整合后，你就拿到了"以不变应万变"的原力资产。效果吊打常规疗愈类产品。</p>
+          <div class="take">
+            <span>人生主线觉醒</span>
+            <span>非对称优势</span>
+            <span>金色阴影整合</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 关二 -->
+      <div class="gate reveal">
+        <div class="num">02<span class="cn">品类独创</span></div>
+        <div class="body">
+          <span class="tag">Day 2 · 开创属于你的赛道</span>
+          <h3>不在旧品类内卷，<br>开一个新品类做第一</h3>
+          <p class="desc">大脑对旧品类只记得 1 个名字，却对新品类没有数量限制。沿着你的原力深挖，走到"无法分类"的位置，重新定义——好品类的唯一标准，是用户自带预算来找你。提炼一秒入脑的品牌定位，完成基于心智的定价。</p>
+          <div class="take">
+            <span>原力资产</span>
+            <span>一秒入脑品类品牌</span>
+            <span>心智定价</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 关三 -->
+      <div class="gate reveal">
+        <div class="num">03<span class="cn">关键决断</span></div>
+        <div class="body">
+          <span class="tag">Day 3 · 锁定下一步关键战役</span>
+          <h3>从一堆事里，<br>找到那个全局最优解</h3>
+          <p class="desc">用关键战役的战略驾驶舱，把纷繁业务收敛成当下最重要的那一仗。离开课堂时，你清楚知道接下来要做什么、为什么做、怎么验证——直接落地执行，而不是带回一沓笔记。</p>
+          <div class="take">
+            <span>关键战役战略驾驶舱</span>
+            <span>全局最优解</span>
+            <span>自我诊断工具</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 方法论金句条 -->
+  <section class="creed">
+    <div class="inner reveal">
+      <div class="formula">财富 = <b>借势</b> <span class="x">×</span> <b>合力</b></div>
+      <p>做对的生意，是不费力的获客、不费力的转化、不费力的交付，来的都是对的人。这是一门慢的好生意，能做十年。</p>
+      <p class="quote">我们要的不是快生意，是一种慢的好生意</p>
+    </div>
+  </section>
+
+  <!-- 谁适合 -->
+  <section class="who">
+    <div class="inner">
+      <div class="label reveal">这三天，为谁而设</div>
+      <h2 class="reveal">不是给所有人的课，<br>是给"对的人"的闭关</h2>
+      <div class="who-cols reveal">
+        <div class="who-card yes">
+          <div class="ttl">✦ 如果你是——</div>
+          <ul>
+            <li>有一定基本盘、却被同质化竞争消耗的创始人</li>
+            <li>高敏感、专家型，想把"自己"做成事业的人</li>
+            <li>能力很强，却始终想不清核心问题该打哪一仗</li>
+            <li>认同"目标在人之下"，想做一门慢的好生意</li>
+          </ul>
+        </div>
+        <div class="who-card no">
+          <div class="ttl">✧ 如果你想要——</div>
+          <ul>
+            <li>一套立刻起量、赚快钱的流量打法</li>
+            <li>照搬就能用的标准答案与模板套路</li>
+            <li>继续在旧品类里证明"我比同行更好"</li>
+            <li>把自己工具化，去追一个外部设定的目标</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 场域 -->
+  <section class="venue">
+    <svg class="lotus" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.8" aria-hidden="true">
+      <circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="34"/><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="10"/>
+    </svg>
+    <div class="inner">
+      <div class="label reveal">场域 · 闹中取静</div>
+      <h2 class="reveal">在一处<em>沉静的场域</em>里，<br>把外界的噪音放下</h2>
+      <p class="reveal">三天闭关，我们刻意远离日常的会议室与喧嚣。一处足够安静的空间，本身就是一种"心智隔离"——当环境慢下来，你才听得见自己真正的判断，重新看见那条贯穿一生的主线。</p>
+      <p class="reveal">这里没有 KPI 的催促，也没有同质化的内卷。你只需要专注一件事：想清楚下一步那一仗怎么打。三天里，真实学员走过的路会在你眼前一一展开，让"做自己也能做成好生意"变得可感、可信。</p>
+      <div class="feats reveal">
+        <span>沉浸式闭关环境</span>
+        <span>远离日常干扰</span>
+        <span>小班深度共创</span>
+        <span>真实学员同行</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 报名 -->
+  <section class="enroll" id="enroll">
+    <div class="inner">
+      <div class="label reveal">三天闭关 · 体验席位</div>
+      <h2 class="reveal">把"做自己"，<br>变成一门<span class="accent">好生意</span></h2>
+      <div class="price-row reveal">
+        <div class="price"><span class="yuan">¥</span>12,980</div>
+      </div>
+      <p class="price-note reveal">精品深度实操 · 小贵但值 · 让你的每一个决策都不费力</p>
+      <p class="next reveal">席位有限 · 教材按人数准备 · 报名后专属顾问对接</p>
+      <a href="#" class="btn-primary reveal" onclick="this.querySelector? null:null">预约席位 / 咨询顾问</a>
+      <p class="micro reveal">完成三天闭关后，可凭成果进阶 <b>原力 OS 年卡</b>——解锁全量 32 个关键战役与原力大脑 AI 教练，把这一年的每一仗都打成结果。</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="inner">
+      <div class="brand">原力<span>战略</span> · AI 原生的战略操盘手</div>
+      <div>慢的好生意 · 借势 × 合力 · © 2026</div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // 滚动揭示
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay=(Math.min(i,4)*0.06)+'s';
+    io.observe(el);
+  });
+  // hero 首屏立刻揭示
+  window.addEventListener('load',()=>{
+    document.querySelectorAll('.hero .reveal').forEach((el,i)=>{
+      setTimeout(()=>el.classList.add('in'), 120+i*110);
+    });
+  });
+</script>
+</body>
+</html>

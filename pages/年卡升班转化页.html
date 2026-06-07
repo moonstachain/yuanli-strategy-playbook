@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>原力 OS 年卡 · 成为 AI 原生的战略操盘手 — 用一年，打赢你的 32 场关键战役</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d100f;            /* 深墨绿黑 */
+    --bg-soft:#14191a;
+    --panel:#181f1e;
+    --paper:#ece3d2;
+    --paper-dim:rgba(236,227,210,.62);
+    --paper-faint:rgba(236,227,210,.38);
+    --jade:#4f9c82;
+    --jade-deep:#2f6b5a;
+    --gold:#c9a24b;
+    --gold-soft:#e0c178;
+    --vermilion:#c4503c;
+    --line:rgba(236,227,210,.12);
+    --serif:"Noto Serif SC",serif;
+    --sans:"Noto Sans SC",sans-serif;
+    --display:"Cormorant Garamond",serif;
+    --mono:"JetBrains Mono",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--paper);font-family:var(--sans);
+    font-weight:300;line-height:1.85;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  /* 网格底纹 */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 75%);
+  }
+  .wrap{position:relative;z-index:2}
+  section{padding:clamp(64px,8vw,128px) clamp(22px,6vw,80px)}
+  .inner{max-width:1120px;margin:0 auto}
+  h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.28;letter-spacing:.01em}
+  .label{
+    font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.22em;
+    color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px;text-transform:uppercase;
+  }
+  .label::before{content:"";width:28px;height:1px;background:var(--gold)}
+
+  /* 顶栏 */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+    padding:16px clamp(22px,6vw,80px);background:rgba(13,16,15,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+  }
+  .brand{font-family:var(--serif);font-weight:900;font-size:18px;letter-spacing:.16em}
+  .brand span{color:var(--jade)}
+  .topbar .right{display:flex;align-items:center;gap:18px}
+  .topbar .from{font-family:var(--mono);font-size:11.5px;color:var(--paper-faint);letter-spacing:.08em}
+  .topbar .cta{font-family:var(--sans);font-weight:500;font-size:13px;padding:8px 18px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;border-radius:2px;transition:.3s}
+  .topbar .cta:hover{background:var(--gold);color:var(--bg)}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:120px;position:relative;
+    background:radial-gradient(ellipse 70% 55% at 70% 15%,rgba(79,156,130,.14),transparent 60%);}
+  .hero .from-tag{
+    display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;
+    color:var(--paper-dim);border:1px solid var(--line);padding:8px 16px;border-radius:30px;margin-bottom:34px;width:fit-content;
+  }
+  .hero .from-tag b{color:var(--gold-soft);font-weight:500}
+  .hero h1{font-size:clamp(38px,6.6vw,84px);line-height:1.14;letter-spacing:.015em;max-width:16ch;margin-bottom:18px}
+  .hero h1 .g{color:var(--gold-soft)}
+  .hero h1 .j{color:var(--jade)}
+  .hero .sub{font-family:var(--serif);font-size:clamp(22px,3vw,34px);color:var(--gold-soft);margin:26px 0 4px;font-weight:700;letter-spacing:.03em}
+  .hero .sub-en{font-family:var(--display);font-style:italic;font-size:clamp(15px,1.8vw,20px);color:var(--paper-dim);margin:0 0 38px;font-weight:500;opacity:.8}
+  .hero .deck{font-size:clamp(15px,1.7vw,18px);max-width:50ch;color:var(--paper-dim);line-height:2.05}
+  .hero .deck b{color:var(--paper);font-weight:400}
+  .btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--sans);font-weight:500;letter-spacing:.06em;font-size:15px;padding:17px 38px;border-radius:2px;transition:.35s;position:relative;overflow:hidden}
+  .btn-gold{background:var(--gold);color:var(--bg)}
+  .btn-gold::after{content:"→";transition:.35s}
+  .btn-gold:hover{background:var(--gold-soft)}
+  .btn-gold:hover::after{transform:translateX(6px)}
+  .hero .btns{display:flex;flex-wrap:wrap;gap:16px;margin-top:42px;align-items:center}
+  .hero .ghost{font-size:14px;color:var(--paper-dim);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:3px;transition:.3s}
+  .hero .ghost:hover{color:var(--gold-soft);border-color:var(--gold-soft)}
+  .scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--paper-faint);writing-mode:vertical-rl;animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+  /* 桥接：你已经走完十分之一 */
+  .bridge{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .bridge h2{font-size:clamp(26px,4.2vw,48px);line-height:1.3;max-width:22ch;margin-bottom:20px}
+  .bridge h2 .v{color:var(--vermilion)}
+  .bridge .lead{font-size:16px;color:var(--paper-dim);max-width:46ch;line-height:2;margin-bottom:56px}
+  .progress{margin-top:40px}
+  .progress .bar{height:14px;border:1px solid var(--line);border-radius:30px;overflow:hidden;background:rgba(0,0,0,.25);position:relative}
+  .progress .fill{height:100%;width:12%;background:linear-gradient(90deg,var(--jade-deep),var(--jade));border-radius:30px;position:relative}
+  .progress .scale{display:flex;justify-content:space-between;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--paper-faint)}
+  .progress .scale b{color:var(--jade)}
+  .progress .scale .end{color:var(--gold-soft)}
+  .progress .cap{margin-top:22px;font-size:14.5px;color:var(--paper-dim)}
+  .progress .cap b{color:var(--paper);font-weight:400}
+
+  /* 价值公式 */
+  .formula-band{background:var(--jade-deep);text-align:center;background-image:radial-gradient(circle at 50% 0%,rgba(236,227,210,.10),transparent 55%)}
+  .formula-band .f{font-family:var(--display);font-size:clamp(26px,4.6vw,54px);font-weight:600;letter-spacing:.03em;color:var(--paper)}
+  .formula-band .f b{color:var(--gold-soft)}
+  .formula-band .f .x{opacity:.5;font-style:italic;padding:0 .3em}
+  .formula-band p{font-size:clamp(14px,1.8vw,17px);max-width:44ch;margin:22px auto 0;color:rgba(236,227,210,.8);line-height:2}
+
+  /* 年卡四件套 */
+  .kit .head{max-width:48ch;margin-bottom:60px}
+  .kit h2{font-size:clamp(28px,4.6vw,54px);line-height:1.24;margin-bottom:18px}
+  .kit h2 .hl{color:var(--jade)}
+  .kit .head p{font-size:16px;color:var(--paper-dim);max-width:42ch;line-height:2}
+  .kit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .kit-card{background:var(--panel);padding:clamp(30px,4vw,46px);position:relative;transition:.4s}
+  .kit-card:hover{background:#1c2423}
+  .kit-card .idx{font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:.15em;margin-bottom:18px}
+  .kit-card h3{font-size:clamp(21px,2.8vw,30px);margin-bottom:14px;color:var(--paper)}
+  .kit-card .role{font-family:var(--display);font-style:italic;font-size:17px;color:var(--jade);margin-bottom:18px}
+  .kit-card p{font-size:15px;color:var(--paper-dim);line-height:1.95}
+  .kit-card .ico{position:absolute;top:clamp(26px,4vw,42px);right:clamp(26px,4vw,42px);width:32px;height:32px;color:var(--jade-deep);opacity:.7}
+
+  /* 四关通关地图 */
+  .map{background:var(--bg-soft)}
+  .map .head{margin-bottom:54px;max-width:46ch}
+  .map h2{font-size:clamp(28px,4.4vw,50px);margin-bottom:18px}
+  .map h2 .g{color:var(--gold-soft)}
+  .map .head p{color:var(--paper-dim);font-size:16px;line-height:2}
+  .gates-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .gate{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--jade);border-radius:4px;padding:28px 24px;transition:.35s;position:relative}
+  .gate:hover{transform:translateY(-6px);border-top-color:var(--gold)}
+  .gate .d{font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:.12em;margin-bottom:12px}
+  .gate h4{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--paper);margin-bottom:8px}
+  .gate .q{font-size:13.5px;color:var(--jade);font-style:italic;font-family:var(--display);font-size:17px;margin-bottom:16px}
+  .gate .out{font-size:13.5px;color:var(--paper-dim);line-height:1.8;border-top:1px dashed var(--line);padding-top:14px}
+  .gate .out b{color:var(--paper);font-weight:400;display:block;margin-bottom:4px;font-size:12px;font-family:var(--mono);letter-spacing:.1em;color:var(--paper-faint)}
+  .map .battles{margin-top:40px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:26px 30px;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
+  .map .battles .big{font-family:var(--serif);font-weight:900;font-size:clamp(40px,6vw,68px);color:var(--gold-soft);line-height:1}
+  .map .battles .txt{font-size:15px;color:var(--paper-dim);line-height:1.8;flex:1;min-width:240px}
+  .map .battles .txt b{color:var(--paper);font-weight:400}
+
+  /* 年卡如何运转 */
+  .loop .head{max-width:46ch;margin-bottom:56px}
+  .loop h2{font-size:clamp(28px,4.4vw,50px);margin-bottom:18px}
+  .loop h2 .j{color:var(--jade)}
+  .loop .head p{color:var(--paper-dim);font-size:16px;line-height:2}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .step{padding:0 24px;position:relative}
+  .step:not(:last-child)::after{content:"→";position:absolute;right:-6px;top:6px;color:var(--gold);font-size:20px;opacity:.6}
+  .step .n{font-family:var(--mono);font-size:13px;color:var(--gold);margin-bottom:14px}
+  .step h4{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--paper);margin-bottom:10px}
+  .step p{font-size:14px;color:var(--paper-dim);line-height:1.85}
+  .loop .retain{margin-top:56px;padding:34px 38px;border-left:3px solid var(--jade);background:rgba(79,156,130,.08)}
+  .loop .retain p{font-family:var(--serif);font-size:clamp(17px,2.4vw,24px);color:var(--paper);line-height:1.6;font-weight:500}
+  .loop .retain .s{font-family:var(--sans);font-size:14px;color:var(--paper-dim);margin-top:12px;font-weight:300}
+
+  /* 体验 vs 年卡 对比 */
+  .compare h2{font-size:clamp(28px,4.4vw,50px);margin-bottom:48px;max-width:20ch}
+  .compare h2 .g{color:var(--gold-soft)}
+  .ctable{border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  .crow{display:grid;grid-template-columns:1.3fr 1fr 1.2fr;border-bottom:1px solid var(--line)}
+  .crow:last-child{border-bottom:none}
+  .crow>div{padding:18px 22px;font-size:14.5px;display:flex;align-items:center}
+  .crow .dim{color:var(--paper-dim);font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;background:var(--bg-soft)}
+  .crow .exp{color:var(--paper-dim);border-left:1px solid var(--line);border-right:1px solid var(--line)}
+  .crow .card{color:var(--paper);background:rgba(201,162,75,.06)}
+  .crow.h>div{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--paper);background:var(--panel)}
+  .crow.h .card{color:var(--gold-soft)}
+  .crow .card b{color:var(--gold-soft);font-weight:500}
+
+  /* 适合谁 */
+  .fit{background:var(--bg-soft)}
+  .fit h2{font-size:clamp(26px,4.2vw,46px);margin-bottom:42px;max-width:20ch}
+  .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,48px)}
+  .fit-card{padding:34px 32px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+  .fit-card.yes{border-top:4px solid var(--jade)}
+  .fit-card.no{border-top:4px solid var(--paper-faint);opacity:.85}
+  .fit-card .t{font-family:var(--serif);font-weight:700;font-size:20px;margin-bottom:20px}
+  .fit-card.yes .t{color:var(--jade)}
+  .fit-card.no .t{color:var(--paper-dim)}
+  .fit-card ul{list-style:none}
+  .fit-card li{font-size:14.5px;color:var(--paper-dim);padding:11px 0 11px 26px;position:relative;border-bottom:1px dashed var(--line)}
+  .fit-card li:last-child{border-bottom:none}
+  .fit-card.yes li::before{content:"✓";position:absolute;left:0;color:var(--jade);font-weight:700}
+  .fit-card.no li::before{content:"—";position:absolute;left:0;color:var(--paper-faint)}
+
+  /* 报名 */
+  .enroll{text-align:center;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,162,75,.12),transparent 60%)}
+  .enroll .label{justify-content:center}.enroll .label::before{display:none}
+  .enroll h2{font-size:clamp(30px,5vw,60px);line-height:1.22;margin-bottom:26px;max-width:18ch;margin-left:auto;margin-right:auto}
+  .enroll h2 .g{color:var(--gold-soft)}
+  .pricebox{display:inline-flex;flex-direction:column;align-items:center;border:1px solid var(--line);border-radius:8px;padding:38px 56px;background:var(--panel);margin-bottom:10px}
+  .pricebox .term{font-family:var(--mono);font-size:12px;letter-spacing:.15em;color:var(--gold);margin-bottom:14px}
+  .pricebox .price{font-family:var(--serif);font-weight:900;font-size:clamp(42px,8vw,80px);color:var(--paper);line-height:1}
+  .pricebox .price .y{font-size:.4em;font-weight:500;vertical-align:super;margin-right:4px}
+  .pricebox .unit{font-size:14px;color:var(--paper-dim);margin-top:10px}
+  .pricebox .note{font-size:13px;color:var(--paper-faint);margin-top:6px}
+  .enroll .terms{display:flex;flex-wrap:wrap;justify-content:center;gap:26px;margin:30px auto;max-width:640px}
+  .enroll .terms div{font-size:13.5px;color:var(--paper-dim)}
+  .enroll .terms b{color:var(--jade);font-family:var(--serif);font-weight:700;display:block;font-size:17px;margin-bottom:2px}
+  .enroll .micro{font-size:12.5px;color:var(--paper-faint);margin-top:24px;letter-spacing:.04em;max-width:46ch;margin-left:auto;margin-right:auto;line-height:1.9}
+
+  footer{background:var(--bg);border-top:1px solid var(--line);padding:42px clamp(22px,6vw,80px);font-size:13px;color:var(--paper-faint)}
+  footer .inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  footer .brand{color:var(--paper)}footer .brand span{color:var(--jade)}
+
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .85s cubic-bezier(.2,.7,.2,1),transform .85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:860px){
+    .kit-grid{grid-template-columns:1fr}
+    .gates-row{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr 1fr;gap:30px 0}
+    .step:not(:last-child)::after{display:none}
+    .fit-grid{grid-template-columns:1fr}
+    .crow{grid-template-columns:1fr}
+    .crow .exp,.crow .card{border:none;border-top:1px solid var(--line)}
+    .crow.h{display:none}
+    .crow .dim::before{content:"▸ "}
+    .hero{min-height:auto;padding-top:140px;padding-bottom:80px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">原力<span>OS</span> · 年卡</div>
+    <div class="right">
+      <span class="from">FROM ¥12,980 体验班</span>
+      <a href="#enroll" class="cta">升班占位</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="inner">
+      <div class="from-tag reveal">你已完成 <b>三天体验闭关</b> · 解锁了通关地图的 <b>1/10</b></div>
+      <h1 class="reveal">三天，你看见了全貌。<br>剩下的 <span class="g">9/10</span>，<br>用<span class="j">一年</span>把它打成结果。</h1>
+      <p class="sub reveal">把“做自己”，变成“好生意”。</p>
+      <p class="sub-en reveal">Become an AI-native strategy operator.</p>
+      <p class="deck reveal">
+        体验班教你<b>想清楚</b>下一步那一仗。<br>
+        年卡，是用一整年——把 <b>原力 OS</b> 的全部思维框架装进你的脑子，
+        把 <b>原力大脑</b> 装进你的业务，<b>一仗一仗</b>打赢你的 32 场关键战役。
+      </p>
+      <div class="btns reveal">
+        <a href="#enroll" class="btn btn-gold">了解年卡 / 升班占位</a>
+        <a href="#map" class="ghost">先看完整通关地图 ↓</a>
+      </div>
+    </div>
+    <div class="scroll-hint">SCROLL</div>
+  </header>
+
+  <!-- 桥接 -->
+  <section class="bridge">
+    <div class="inner">
+      <div class="label reveal">为什么三天还不够</div>
+      <h2 class="reveal">想清楚一仗，和<span class="v">打赢三十二仗</span>，<br>是两件事。</h2>
+      <p class="lead reveal">三天闭关，你拿到了人生主线、品类定位、和当下那一个关键战役的驾驶舱。但创业不是一场仗——你的业务环境会一直变，新的关键战役会一个接一个冒出来。真正拉开差距的，是你有没有一套能反复调用的操作系统。</p>
+
+      <div class="progress reveal">
+        <div class="bar"><div class="fill"></div></div>
+        <div class="scale">
+          <span><b>体验班 · 3-6 个关键战役</b></span>
+          <span class="end">年卡 · 全量 32 个关键战役</span>
+        </div>
+        <p class="cap">体验班只是开局。<b>剩下的 26+ 场关键战役、完整作战地图、原力大脑进阶版</b>——只在年卡里解锁。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 价值公式 -->
+  <section class="formula-band">
+    <div class="inner reveal">
+      <div class="f">一年 = <b>原力 OS</b> <span class="x">×</span> <b>原力大脑</b> <span class="x">×</span> <b>32 场关键战役</b></div>
+      <p>不是听更多知识，是学会"用原力 OS 给自己做战略咨询"——把做自己，变成一门能做十年的好生意。</p>
+    </div>
+  </section>
+
+  <!-- 年卡四件套 -->
+  <section class="kit">
+    <div class="inner">
+      <div class="head reveal">
+        <div class="label">年卡到底交付什么</div>
+        <h2>四件套，把"<span class="hl">想清楚</span>"<br>变成"<span class="hl">打得赢</span>"</h2>
+        <p>不再是带走一沓笔记，而是带走一套能反复运转的战略操作系统。</p>
+      </div>
+
+      <div class="kit-grid reveal">
+        <div class="kit-card">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <div class="idx">01 · 思维框架</div>
+          <h3>原力 OS 全谱</h3>
+          <div class="role">竞品抄不走的核心资产</div>
+          <p>觉醒 → 独创 → 升维 → 锁定，四关 32 个核心思维模型全量开放。每一次集训讲解 3–6 个，每次来都有新框架，学会给自己做战略咨询。</p>
+        </div>
+        <div class="kit-card">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg>
+          <div class="idx">02 · AI 工具</div>
+          <h3>原力大脑 · 进阶版</h3>
+          <div class="role">把框架装进你的业务</div>
+          <p>基础版人人可用；进阶版提供定制化 AI 工作流与一键智能体，基于你的个性化业务内容生成更深的战略结果——这是体验班接触不到的。</p>
+        </div>
+        <div class="kit-card">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+          <div class="idx">03 · 落地引擎</div>
+          <h3>增强版 CEO 战略驾驶舱</h3>
+          <div class="role">基于业务细节的 AI 战略诊断</div>
+          <p>不是泛泛的模板表，而是结合你真实业务的 AI 原生战略诊断报告，帮你抽取战略目标、量化每一仗的全局最优解。</p>
+        </div>
+        <div class="kit-card">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          <div class="idx">04 · 全程陪跑</div>
+          <h3>随身 AI 教练 + 导师点评</h3>
+          <div class="role">空档期不再焦虑</div>
+          <p>随身教练（知识库 + 原力 OS）随时可调用；每场关键战役你自主完成、现场汇报，由导师做针对性点评打分——确保你拿到真实结果。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 通关地图 -->
+  <section class="map" id="map">
+    <div class="inner">
+      <div class="head reveal">
+        <div class="label">完整通关地图 · 全貌</div>
+        <h2>四关一年，<br>从"<span class="g">我是谁</span>"到"<span class="g">我如何不被替代</span>"</h2>
+        <p>体验班只解锁了浅版地图。这才是年卡里逐周期为你打开的完整作战全貌。</p>
+      </div>
+
+      <div class="gates-row reveal">
+        <div class="gate">
+          <div class="d">D1 · 觉醒</div>
+          <h4>原力觉醒</h4>
+          <div class="q">我是谁？</div>
+          <div class="out"><b>核心输出</b>一句话原力定位 + 非对称优势锁定</div>
+        </div>
+        <div class="gate">
+          <div class="d">D2 · 独创</div>
+          <h4>品类独创</h4>
+          <div class="q">我卖什么？</div>
+          <div class="out"><b>核心输出</b>一句话品类定位 + 心智定价</div>
+        </div>
+        <div class="gate">
+          <div class="d">D3 · 升维</div>
+          <h4>模式升维</h4>
+          <div class="q">我怎么放大？</div>
+          <div class="out"><b>核心输出</b>商业模式画布 + 一条飞轮图</div>
+        </div>
+        <div class="gate">
+          <div class="d">D4 · 锁定</div>
+          <h4>壁垒锁定</h4>
+          <div class="q">我如何不被替代？</div>
+          <div class="out"><b>核心输出</b>护城河雷达 + 创始人解放清单</div>
+        </div>
+      </div>
+
+      <div class="battles reveal">
+        <div class="big">32</div>
+        <div class="txt">每一关下，都拆解为若干场<b>关键战役</b>。一年分四个周期解锁全量 32 场，<b>一年没修完，第二年接着修</b>——直到你这套操作系统真正长在身上。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 如何运转 -->
+  <section class="loop">
+    <div class="inner">
+      <div class="head reveal">
+        <div class="label">年卡如何运转</div>
+        <h2>一年四次集训，<br>每次<span class="j">带一仗的结果</span>回家</h2>
+        <p>不是来听课，是来打仗。每一期聚焦原力 OS 的核心模型，新老用户随时接入、不必补课。</p>
+      </div>
+
+      <div class="steps reveal">
+        <div class="step"><div class="n">STEP 01</div><h4>学框架</h4><p>每期集训讲解 3–6 个原力 OS 核心思维模型，每次来都有新收获。</p></div>
+        <div class="step"><div class="n">STEP 02</div><h4>选战役</h4><p>结合你当下业务生命周期，从模型里选定你这一仗的关键战役。</p></div>
+        <div class="step"><div class="n">STEP 03</div><h4>用大脑</h4><p>调用原力大脑完成落地，产出贴合你业务场景的真实战略成果。</p></div>
+        <div class="step"><div class="n">STEP 04</div><h4>拿点评</h4><p>现场成果汇报，导师以 AI + 专业叠加视角做针对性点评打分。</p></div>
+      </div>
+
+      <div class="retain reveal">
+        <p>你的业务一直在变，关键战役就一仗接一仗。<br>这套操作系统，会陪你打很多年。</p>
+        <div class="s">这正是它能做成"慢的好生意"的原因——留存不靠拉新，靠你真的离不开它。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 对比 -->
+  <section class="compare">
+    <div class="inner">
+      <div class="label reveal">体验班 vs 年卡</div>
+      <h2 class="reveal">同一套体系，<br>两种<span class="g">深度</span></h2>
+      <div class="ctable reveal">
+        <div class="crow h">
+          <div></div>
+          <div class="exp">¥12,980 体验班</div>
+          <div class="card">¥168,000 年卡</div>
+        </div>
+        <div class="crow">
+          <div class="dim">关键战役</div>
+          <div class="exp">3–6 个 · 开局体验</div>
+          <div class="card"><b>全量 32 个</b> · 四周期解锁</div>
+        </div>
+        <div class="crow">
+          <div class="dim">原力 OS</div>
+          <div class="exp">核心框架概览</div>
+          <div class="card"><b>32 模型全谱</b> · 每期深讲</div>
+        </div>
+        <div class="crow">
+          <div class="dim">原力大脑</div>
+          <div class="exp">基础版</div>
+          <div class="card"><b>进阶版</b> · 定制工作流 + 一键智能体</div>
+        </div>
+        <div class="crow">
+          <div class="dim">战略驾驶舱</div>
+          <div class="exp">浅版自我诊断</div>
+          <div class="card"><b>增强版</b> · AI 原生业务诊断</div>
+        </div>
+        <div class="crow">
+          <div class="dim">通关地图</div>
+          <div class="exp">浅版 · 看见全貌</div>
+          <div class="card"><b>完整作战地图</b> · 逐周期打开</div>
+        </div>
+        <div class="crow">
+          <div class="dim">陪伴深度</div>
+          <div class="exp">三天集中交付</div>
+          <div class="card"><b>全年陪跑</b> · 随身教练 + 导师点评</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 适合谁 -->
+  <section class="fit">
+    <div class="inner">
+      <div class="label reveal">这一年，为谁而设</div>
+      <h2 class="reveal">年卡不是给所有体验班学员的<br>下一步。</h2>
+      <div class="fit-grid reveal">
+        <div class="fit-card yes">
+          <div class="t">✦ 如果你——</div>
+          <ul>
+            <li>已经在体验班里尝到"想清楚一仗"的甜头，想要全部</li>
+            <li>有持续要打的硬仗，业务复杂到需要一套操作系统</li>
+            <li>愿意自己动手做战略，而非外包一份 PPT 了事</li>
+            <li>认同长期主义，要的是能做十年的好生意</li>
+          </ul>
+        </div>
+        <div class="fit-card no">
+          <div class="t">✧ 如果你——</div>
+          <ul>
+            <li>只想要一次性的标准答案，不打算反复实践</li>
+            <li>期待我们替你做完执行（年卡是教你打、不是替你打）</li>
+            <li>当下没有真实业务可以代入关键战役</li>
+            <li>更想要快钱玩法，而不是慢的好生意</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 报名 -->
+  <section class="enroll" id="enroll">
+    <div class="inner">
+      <div class="label reveal">原力 OS 年卡 · 升班占位</div>
+      <h2 class="reveal">用一年，成为<br><span class="g">AI 原生的战略操盘手</span></h2>
+
+      <div class="pricebox reveal">
+        <div class="term">YEAR CARD · 全量解锁</div>
+        <div class="price"><span class="y">¥</span>168,000</div>
+        <div class="unit">/ 年 · 全量 32 关键战役 · 四周期</div>
+        <div class="note">一年未修完，第二年可继续修</div>
+      </div>
+
+      <div class="terms reveal">
+        <div><b>32 场</b>关键战役全解锁</div>
+        <div><b>4 次</b>线下集训 · 全年陪跑</div>
+        <div><b>进阶版</b>原力大脑 AI 工具</div>
+        <div><b>完整</b>作战通关地图</div>
+      </div>
+
+      <div style="margin-top:10px" class="reveal">
+        <a href="WECHAT_LINK_HERE" class="btn btn-gold">加顾问微信 · 预约升班</a>
+      </div>
+
+      <p class="micro reveal">价格与权益以顾问最终确认为准。年卡是"教你做自己的战略咨询"，采用"学员自主完成关键战役 + 导师点评"模式，不含代做执行；进入企业做个性化战略闭环为另行定制的更高阶服务。</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="inner">
+      <div class="brand">原力<span>战略</span> · AI 原生的战略操盘手</div>
+      <div>慢的好生意 · 借势 × 合力 · © 2026</div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,4)*0.05)+'s';io.observe(el);});
+  window.addEventListener('load',()=>{document.querySelectorAll('.hero .reveal').forEach((el,i)=>{setTimeout(()=>el.classList.add('in'),120+i*110);});});
+  // 进度条入场动效
+  const pb=document.querySelector('.progress .fill');
+  if(pb){const pio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){pb.style.transition='width 1.4s cubic-bezier(.2,.7,.2,1)';pb.style.width='12%';pio.unobserve(e.target)}})},{threshold:.4});
+  pb.style.width='0%';pio.observe(pb);}
+</script>
+</body>
+</html>
